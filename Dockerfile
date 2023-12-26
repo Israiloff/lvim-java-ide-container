@@ -3,15 +3,17 @@ FROM python:latest
 RUN /bin/bash -c "apt update -y"
 RUN /bin/bash -c "apt upgrade -y"
 RUN /bin/bash -c "adduser user"
-
-USER user
-
+RUN /bin/bash -c "apt install sudo -y"
 RUN /bin/bash -c "apt install -y zip"
 RUN /bin/bash -c "apt install -y unzip"
 RUN /bin/bash -c "apt install -y openjdk-17-jdk"
 RUN /bin/bash -c "apt install -y maven"
 RUN /bin/bash -c "apt install -y make"
 RUN /bin/bash -c "apt install -y build-essential"
+RUN /bin/bash -c "adduser user sudo"
+
+USER user
+
 RUN /bin/bash -c "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash"
 RUN /bin/bash -c "source ~/.nvm/nvm.sh"
 RUN /bin/bash -c "nvm install --lts"
