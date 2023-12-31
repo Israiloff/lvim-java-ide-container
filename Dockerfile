@@ -3,6 +3,7 @@ ARG PYTHON_VERSION=3
 FROM python:${PYTHON_VERSION}-alpine
 
 ENV JDK_VERSION=21
+ENV MAVEN_VERSION=3.9.6
 
 RUN apk add --no-cache bash
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
@@ -16,11 +17,11 @@ RUN curl -O https://download.oracle.com/java/${JDK_VERSION}/latest/jdk-${JDK_VER
 RUN dpkg --add-architecture amd64
 RUN dpkg -i jdk-${JDK_VERSION}_linux-x64_bin.deb
 RUN rm jdk-${JDK_VERSION}_linux-x64_bin.deb
-RUN curl -O https://dlcdn.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz
-RUN tar -xvf apache-maven-3.9.6-bin.tar.gz
-RUN mv apache-maven-3.9.6 /opt/
-RUN M2_HOME='/opt/apache-maven-3.9.6' && PATH="\$M2_HOME/bin:\$PATH" && export PATH
-RUN rm apache-maven-3.9.6-bin.tar.gz
+RUN curl -O https://dlcdn.apache.org/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz
+RUN tar -xvf apache-maven-${MAVEN_VERSION}-bin.tar.gz
+RUN mv apache-maven-${MAVEN_VERSION} /opt/
+RUN M2_HOME='/opt/apache-maven-${MAVEN_VERSION}' && PATH="\$M2_HOME/bin:\$PATH" && export PATH
+RUN rm apache-maven-${MAVEN_VERSION}-bin.tar.gz
 RUN apk add --no-cache --no-interactive make
 RUN apk add --no-cache --no-interactive ca-certificates
 RUN apk add --no-cache --no-interactive git
