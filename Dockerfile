@@ -1,7 +1,8 @@
-ARG JDK_VERSION=21
 ARG PYTHON_VERSION=3
 
 FROM python:${PYTHON_VERSION}-alpine
+
+ENV JDK_VERSION=21
 
 RUN apk add --no-cache bash
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
@@ -11,10 +12,10 @@ RUN apk add --no-cache --no-interactive zip
 RUN apk add --no-cache --no-interactive unzip
 RUN apk add --no-cache --no-interactive curl
 RUN apk add --no-cache --no-interactive dpkg
-RUN curl -O https://download.oracle.com/java/21/latest/jdk-21_linux-x64_bin.deb
+RUN curl -O https://download.oracle.com/java/${JDK_VERSION}/latest/jdk-21_linux-x64_bin.deb
 RUN dpkg --add-architecture amd64
-RUN dpkg -i jdk-21_linux-x64_bin.deb
-RUN rm jdk-21_linux-x64_bin.deb
+RUN dpkg -i jdk-${JDK_VERSION}_linux-x64_bin.deb
+RUN rm jdk-${JDK_VERSION}_linux-x64_bin.deb
 RUN curl -O https://dlcdn.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz
 RUN tar -xvf apache-maven-3.9.6-bin.tar.gz
 RUN mv apache-maven-3.9.6 /opt/
