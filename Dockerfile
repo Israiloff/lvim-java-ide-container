@@ -4,6 +4,7 @@ FROM python:${PYTHON_VERSION}-alpine
 
 ENV JDK_VERSION=21
 ENV MAVEN_VERSION=3.9.6
+ENV NVM_VERSION=0.39.7
 
 RUN apk add --no-cache bash
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
@@ -28,7 +29,7 @@ RUN apk add --no-cache --no-interactive git
 RUN apk add --no-cache --no-interactive g++
 RUN apk add --no-cache --no-interactive openssl
 RUN apk add --no-cache libstdc++; \
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash; \
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v${NVM_VERSION}/install.sh | bash; \
     echo 'source $HOME/.profile;' >> $HOME/.bashrc; \
     echo 'export NVM_NODEJS_ORG_MIRROR=https://unofficial-builds.nodejs.org/download/release;' >> $HOME/.profile; \
     echo 'nvm_get_arch() { nvm_echo "x64-musl"; }' >> $HOME/.profile; \
