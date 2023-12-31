@@ -12,7 +12,7 @@ RUN apk add --no-cache --no-interactive zip
 RUN apk add --no-cache --no-interactive unzip
 RUN apk add --no-cache --no-interactive curl
 RUN apk add --no-cache --no-interactive dpkg
-RUN curl -O https://download.oracle.com/java/${JDK_VERSION}/latest/jdk-21_linux-x64_bin.deb
+RUN curl -O https://download.oracle.com/java/${JDK_VERSION}/latest/jdk-${JDK_VERSION}_linux-x64_bin.deb
 RUN dpkg --add-architecture amd64
 RUN dpkg -i jdk-${JDK_VERSION}_linux-x64_bin.deb
 RUN rm jdk-${JDK_VERSION}_linux-x64_bin.deb
