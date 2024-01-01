@@ -15,15 +15,8 @@ RUN apk add --no-cache --no-interactive zip
 RUN apk add --no-cache --no-interactive unzip
 RUN apk add --no-cache --no-interactive curl
 RUN apk add --no-cache --no-interactive dpkg
-RUN curl -O https://download.oracle.com/java/${JDK_VERSION}/latest/jdk-${JDK_VERSION}_linux-x64_bin.deb
-RUN dpkg --add-architecture amd64
-RUN dpkg -i jdk-${JDK_VERSION}_linux-x64_bin.deb
-RUN rm jdk-${JDK_VERSION}_linux-x64_bin.deb
-RUN curl -O https://dlcdn.apache.org/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz
-RUN tar -xvf apache-maven-${MAVEN_VERSION}-bin.tar.gz
-RUN mv apache-maven-${MAVEN_VERSION} /opt/
-RUN M2_HOME='/opt/apache-maven-${MAVEN_VERSION}' && PATH="\$M2_HOME/bin:\$PATH" && export PATH
-RUN rm apache-maven-${MAVEN_VERSION}-bin.tar.gz
+RUN apk add --no-cache --no-interactive openjdk${JDK_VERSION}
+RUN apk add --no-cache --no-interactive maven
 RUN apk add --no-cache --no-interactive make
 RUN apk add --no-cache --no-interactive ca-certificates
 RUN apk add --no-cache --no-interactive git
