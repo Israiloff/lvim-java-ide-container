@@ -39,7 +39,5 @@ RUN apk add --no-cache rust cargo
 RUN cargo install ripgrep fd-find
 RUN apk add gcompat
 RUN apk add neovim
-RUN adduser -D user
-
-USER user
-RUN bash <(curl -s \"https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh\") -y
+RUN bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh) -y
+RUN alias lvim=$HOME/.local/bin/lvim
