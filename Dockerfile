@@ -5,6 +5,7 @@ FROM python:${PYTHON_VERSION}-alpine
 ENV JDK_VERSION=21
 ENV MAVEN_VERSION=3.9.6
 ENV NVM_VERSION=0.39.7
+ENV HOME_DIR=root
 
 RUN apk add --no-cache bash
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
@@ -30,14 +31,14 @@ RUN apk add --no-cache --no-interactive g++
 RUN apk add --no-cache --no-interactive openssl
 RUN apk add --no-cache libstdc++; \
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v${NVM_VERSION}/install.sh | bash; \
-    echo 'source $HOME/.profile;' >> $HOME/.bashrc; \
-    echo 'export NVM_NODEJS_ORG_MIRROR=https://unofficial-builds.nodejs.org/download/release;' >> $HOME/.profile; \
-    echo 'nvm_get_arch() { nvm_echo "x64-musl"; }' >> $HOME/.profile; \
-    NVM_DIR="$HOME/.nvm"; source $HOME/.nvm/nvm.sh; source $HOME/.profile; \
+    echo "source ${HOME_DIR}/.profile;" >> ${HOME_DIR}/.bashrc; \
+    echo "export NVM_NODEJS_ORG_MIRROR=https://unofficial-builds.nodejs.org/download/release;" >> ${HOME_DIR}/.profile; \
+    echo "nvm_get_arch() { nvm_echo \"x64-musl\"; }" >> ${HOME_DIR}/.profile; \
+    NVM_DIR="${HOME_DIR}/.nvm"; source ${HOME_DIR}/.nvm/nvm.sh; source ${HOME_DIR}/.profile; \
     nvm install --lts
 RUN apk add --no-cache rust cargo
 RUN cargo install ripgrep fd-find
 RUN apk add gcompat
 RUN apk add neovim
 RUN bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh) -y
-RUN alias lvim=$HOME/.local/bin/lvim
+RUN echo "alias lvim=${HOME_DIR}/.local/bin/lvim" >> ${HOME_DIR}/.bashrc
