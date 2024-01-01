@@ -40,4 +40,4 @@ RUN echo "alias lvim=${HOME_DIR}/.local/bin/lvim" >> ${HOME_DIR}/.bashrc
 RUN rm -r ${HOME_DIR}/.config/lvim
 RUN git clone https://github.com/Israiloff/lvim-java-ide.git ${HOME_DIR}/.config/lvim/
 RUN git clone https://github.com/eclipse-jdtls/eclipse.jdt.ls.git ~/projects/nvim/jdtls/
-RUN ./root/projects/nvim/jdtls/mvnw clean verify -DskipTests=true
+RUN . /root/projects/nvim/jdtls/mvnw clean verify -DskipTests=true
