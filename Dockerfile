@@ -37,3 +37,5 @@ RUN apk add gcompat
 RUN apk add neovim
 RUN bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh) -y
 RUN echo "alias lvim=${HOME_DIR}/.local/bin/lvim" >> ${HOME_DIR}/.bashrc
+RUN rm -r ${HOME_DIR}/.config/lvim
+RUN git clone https://github.com/Israiloff/lvim-java-ide.git ${HOME_DIR}/.config/lvim/
