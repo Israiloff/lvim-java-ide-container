@@ -29,14 +29,17 @@ RUN apk add --no-cache --no-interactive ca-certificates
 RUN apk add --no-cache --no-interactive git
 RUN apk add --no-cache --no-interactive g++
 RUN apk add --no-cache --no-interactive openssl
-RUN apk add --no-cache libstdc++; \
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v${NVM_VERSION}/install.sh | bash; \
-    echo "source ${HOME_DIR}/.profile;" >> ${HOME_DIR}/.bashrc; \
-    echo "export NVM_NODEJS_ORG_MIRROR=https://unofficial-builds.nodejs.org/download/release;" >> ${HOME_DIR}/.profile; \
-    echo "nvm_get_arch() { nvm_echo \"x64-musl\"; }" >> ${HOME_DIR}/.profile; \
-    NVM_DIR="${HOME_DIR}/.nvm"; source ${HOME_DIR}/.nvm/nvm.sh; source ${HOME_DIR}/.profile; \
-    nvm install --lts
-RUN apk add --no-cache rust cargo
+RUN apk add --no-cache libstdc++
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v${NVM_VERSION}/install.sh | bash
+RUN echo "source ${HOME_DIR}/.profile;" >> ${HOME_DIR}/.bashrc
+RUN echo "export NVM_NODEJS_ORG_MIRROR=https://unofficial-builds.nodejs.org/download/release;" >> ${HOME_DIR}/.profile
+RUN echo "nvm_get_arch() { nvm_echo \"x64-musl\"; }" >> ${HOME_DIR}/.profile
+RUN NVM_DIR="${HOME_DIR}/.nvm"
+RUN source ${HOME_DIR}/.nvm/nvm.sh
+RUN source ${HOME_DIR}/.profile
+RUN nvm install --lts | bash
+RUN apk add --no-cache rust
+RUN apk add --no-cache cargo
 RUN cargo install ripgrep fd-find
 RUN apk add gcompat
 RUN apk add neovim
