@@ -7,9 +7,11 @@ ENV NVM_VERSION=0.39.7
 ENV HOME_DIR=root
 
 RUN apk add --no-cache bash
-RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 RUN apk update --no-cache
 RUN apk upgrade --no-cache
+
+SHELL ["/bin/bash", "-c"]
+
 RUN apk add --no-cache --no-interactive zip
 RUN apk add --no-cache --no-interactive unzip
 RUN apk add --no-cache --no-interactive curl
@@ -39,7 +41,9 @@ RUN bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/ut
 RUN echo "alias lvim=${HOME_DIR}/.local/bin/lvim" >> ${HOME_DIR}/.bashrc
 RUN rm -r ${HOME_DIR}/.config/lvim
 RUN git clone https://github.com/Israiloff/lvim-java-ide.git ${HOME_DIR}/.config/lvim
-RUN git clone https://github.com/eclipse-jdtls/eclipse.jdt.ls.git ~/projects/nvim/jdtls
-RUN . /root/projects/nvim/jdtls/mvnw clean verify -DskipTests=true
-RUN git clone https://github.com/microsoft/java-debug /root/projects/nvim/java-debug
-RUN . /root/projects/nvim/java-debug/mvnw clean install
+RUN git clone https://github.com/eclipse-jdtls/eclipse.jdt.ls.git ${HOME_DIR}/projects/nvim/jdtls
+RUN cd ${HOME_DIR}/projects/nvim/jdtls && ./mvnw clean verify -DskipTests=true
+RUN git clone https://github.com/microsoft/java-debug ${HOME_DIR}/projects/nvim/java-debug
+RUN cd ${HOME_DIR}/projects/nvim/java-debug && ./mvnw clean install
+
+CMD ["bash"]
