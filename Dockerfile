@@ -32,6 +32,7 @@ RUN apk add --no-cache --no-interactive neovim
 RUN apk add --no-cache --no-interactive rust
 RUN apk add --no-cache --no-interactive cargo
 RUN cargo install ripgrep fd-find
+RUN apk add --no-cache --no-interactive fontconfig
 
 #INSTALLING LUNARVIM
 RUN bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh) -y
@@ -51,9 +52,15 @@ RUN cd ${HOME_DIR}/projects/nvim/java-debug && ./mvnw clean install
 
 #INSTALLING MICROSOFT JAVA TEST FOR VS
 RUN git clone https://github.com/microsoft/vscode-java-test.git ${HOME_DIR}/projects/nvim/java-test
-RUN cd ${HOME_DIR}/projects/nvim/java-test && npm run build-plugin
+RUN cd ${HOME_DIR}/projects/nvim/java-test && npm install && npm run build-plugin
 
 #DOWNLOADING LOMBOK ANNOTATION PROCESSOR
-RUN curl -o ${HOME_DIR}/projects/nvim/lombok.jar https://projectlombok.org/downloads/lombok.jar
+RUN curl https://projectlombok.org/downloads/lombok.jar -o /${HOME_DIR}/projects/nvim/lombok.jar
 
-CMD ["bash"]
+RUN curl -OL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/RobotoMono.zip
+RUN mkdir /.fonts
+RUN unzip RobotoMono.zip -d /.fonts
+RUN fc-cache -fv
+RUN rm RobotoMono.zip
+
+ENTRYPOINT ["/bin/bash"]

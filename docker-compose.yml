@@ -6,7 +6,6 @@ services:
   lvim:
     container_name: lvim
     image: io.github.israiloff/lvim-alpine:0.0.1
-    restart: unless-stopped
     build:
       context: .
       dockerfile: Dockerfile
