@@ -17,7 +17,6 @@ SHELL ["/bin/bash", "-c"]
 RUN apk add --no-cache --no-interactive zip
 RUN apk add --no-cache --no-interactive unzip
 RUN apk add --no-cache --no-interactive curl
-RUN apk add --no-cache --no-interactive dpkg
 RUN apk add --no-cache --no-interactive openjdk${JDK_VERSION}
 RUN apk add --no-cache --no-interactive maven
 RUN apk add --no-cache --no-interactive make
