@@ -65,4 +65,7 @@ RUN cd ${HOME_DIR}/projects/nvim/java-debug && ./mvnw clean install
 RUN git clone https://github.com/microsoft/vscode-java-test.git ${HOME_DIR}/projects/nvim/java-test
 RUN cd ${HOME_DIR}/projects/nvim/java-test && npm run build-plugin
 
+#DOWNLOADING LOMBOK ANNOTATION PROCESSOR
+RUN curl -o ${HOME_DIR}/projects/nvim/lombok.jar https://projectlombok.org/downloads/lombok.jar
+
 CMD ["bash"]
