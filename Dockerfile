@@ -3,7 +3,6 @@ ARG PYTHON_VERSION=3
 FROM python:${PYTHON_VERSION}-alpine
 
 ENV JDK_VERSION=21
-ENV NVM_VERSION=0.39.7
 ENV HOME_DIR=root
 
 #PREPARING OS
@@ -26,23 +25,13 @@ RUN apk add --no-cache --no-interactive ca-certificates
 RUN apk add --no-cache --no-interactive git
 RUN apk add --no-cache --no-interactive g++
 RUN apk add --no-cache --no-interactive openssl
-RUN apk add --no-cache libstdc++
-
-#INSTALLING NVM
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v${NVM_VERSION}/install.sh | bash
-RUN echo "source ${HOME_DIR}/.profile;" >> ${HOME_DIR}/.bashrc
-RUN echo "export NVM_NODEJS_ORG_MIRROR=https://unofficial-builds.nodejs.org/download/release;" >> ${HOME_DIR}/.profile
-RUN echo "nvm_get_arch() { nvm_echo \"x64-musl\"; }" >> ${HOME_DIR}/.profile
-RUN NVM_DIR="${HOME_DIR}/.nvm"
-RUN source ${HOME_DIR}/.nvm/nvm.sh
-RUN source ${HOME_DIR}/.profile
-RUN nvm install --lts | bash
-RUN apk add gcompat
-RUN apk add neovim
-
-#INSTALLING AND PREPARING RUST
-RUN apk add --no-cache rust
-RUN apk add --no-cache cargo
+RUN apk add --no-cache --no-interactive libstdc++
+RUN apk add --no-cache --no-interactive npm
+RUN apk add --no-cache --no-interactive openssl
+RUN apk add --no-cache --no-interactive gcompat
+RUN apk add --no-cache --no-interactive neovim
+RUN apk add --no-cache --no-interactive rust
+RUN apk add --no-cache --no-interactive cargo
 RUN cargo install ripgrep fd-find
 
 #INSTALLING LUNARVIM
