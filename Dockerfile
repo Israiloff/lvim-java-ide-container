@@ -3,7 +3,6 @@ ARG PYTHON_VERSION
 FROM python:${PYTHON_VERSION}-alpine
 
 ARG JDK_VERSION
-ARG HOME_DIR
 
 #PREPARING OS
 RUN apk add --no-cache bash
@@ -36,26 +35,26 @@ RUN apk add --no-cache --no-interactive fontconfig
 
 #INSTALLING LUNARVIM
 RUN bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh) -y
-RUN echo "alias lvim=${HOME_DIR}/.local/bin/lvim" >> ${HOME_DIR}/.bashrc
+RUN echo "alias lvim=$HOME/.local/bin/lvim" >> $HOME/.bashrc
 
 #INSTALLING LUNARVIM JAVA IDE CONFIGS
-RUN rm -r ${HOME_DIR}/.config/lvim
-RUN git clone https://github.com/Israiloff/lvim-java-ide.git ${HOME_DIR}/.config/lvim
+RUN rm -r $HOME/.config/lvim
+RUN git clone https://github.com/Israiloff/lvim-java-ide.git $HOME/.config/lvim
 
 #INSTALLING JDTLS
-RUN git clone https://github.com/eclipse-jdtls/eclipse.jdt.ls.git ${HOME_DIR}/projects/nvim/jdtls
-RUN cd ${HOME_DIR}/projects/nvim/jdtls && ./mvnw clean verify -DskipTests=true
+RUN git clone https://github.com/eclipse-jdtls/eclipse.jdt.ls.git $HOME/projects/nvim/jdtls
+RUN cd $HOME/projects/nvim/jdtls && ./mvnw clean verify -DskipTests=true
 
 #INSTALLING MICROSOFT JAVA DEBUG FOR VS
-RUN git clone https://github.com/microsoft/java-debug ${HOME_DIR}/projects/nvim/java-debug
-RUN cd ${HOME_DIR}/projects/nvim/java-debug && ./mvnw clean install
+RUN git clone https://github.com/microsoft/java-debug $HOME/projects/nvim/java-debug
+RUN cd $HOME/projects/nvim/java-debug && ./mvnw clean install
 
 #INSTALLING MICROSOFT JAVA TEST FOR VS
-RUN git clone https://github.com/microsoft/vscode-java-test.git ${HOME_DIR}/projects/nvim/java-test
-RUN cd ${HOME_DIR}/projects/nvim/java-test && npm install && npm run build-plugin
+RUN git clone https://github.com/microsoft/vscode-java-test.git $HOME/projects/nvim/java-test
+RUN cd $HOME/projects/nvim/java-test && npm install && npm run build-plugin
 
 #DOWNLOADING LOMBOK ANNOTATION PROCESSOR
-RUN curl https://projectlombok.org/downloads/lombok.jar -o /${HOME_DIR}/projects/nvim/lombok.jar
+RUN curl -L https://projectlombok.org/downloads/lombok.jar -o $HOME/projects/nvim/lombok.jar
 
 RUN curl -OL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/RobotoMono.zip
 RUN mkdir /.fonts
