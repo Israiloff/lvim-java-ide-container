@@ -63,6 +63,6 @@ RUN fc-cache -fv
 RUN rm RobotoMono.zip
 
 #UPDATING LUNARVIM CONFIG
-RUN lvim +LvimUpdate +LvimCacheReset +q
+RUN . $HOME/.local/bin/lvim +LvimUpdate +LvimCacheReset +q
 
 ENTRYPOINT ["/bin/bash"]
