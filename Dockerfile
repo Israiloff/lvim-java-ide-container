@@ -61,6 +61,8 @@ RUN mkdir /.fonts
 RUN unzip RobotoMono.zip -d /.fonts
 RUN fc-cache -fv
 RUN rm RobotoMono.zip
+
+#UPDATING LUNARVIM CONFIG
 RUN lvim +LvimUpdate +LvimCacheReset +q
 
 ENTRYPOINT ["/bin/bash"]
