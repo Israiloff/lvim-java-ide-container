@@ -70,9 +70,10 @@ RUN apk add --no-cache --no-interactive zsh
 #CHANGING DEFAULT SHELL TO ZSH
 SHELL ["/bin/zsh", "-c"]
 
-#OH MY ZSH INSTALLATION
+#INSTALLING AND CONFIGURING OH MY ZSH
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 RUN echo "alias lvim=$HOME/.local/bin/lvim" >> $HOME/.zshrc
 RUN sed -i -e 's/ZSH_THEME="robbyrussell"/ZSH_THEME="half-life"/g' ~/.zshrc
+RUN apk add --no-cache --no-interactive zsh-vcs
 
 ENTRYPOINT ["/bin/zsh"]
