@@ -65,4 +65,11 @@ RUN rm RobotoMono.zip
 #UPDATING LUNARVIM CONFIG
 RUN . $HOME/.local/bin/lvim +LvimUpdate +LvimCacheReset +q
 
-ENTRYPOINT ["/bin/bash"]
+RUN apk add --no-cache --no-interactive zsh
+
+#CHANGING DEFAULT SHELL TO ZSH
+SHELL ["/bin/zsh", "-c"]
+
+RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+ENTRYPOINT ["/bin/zsh"]
