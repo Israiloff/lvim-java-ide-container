@@ -70,6 +70,8 @@ RUN apk add --no-cache --no-interactive zsh
 #CHANGING DEFAULT SHELL TO ZSH
 SHELL ["/bin/zsh", "-c"]
 
+#OH MY ZSH INSTALLATION
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+RUN echo "alias lvim=$HOME/.local/bin/lvim" >> $HOME/.zshrc
 
 ENTRYPOINT ["/bin/zsh"]
