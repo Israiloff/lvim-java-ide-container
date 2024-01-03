@@ -73,5 +73,6 @@ SHELL ["/bin/zsh", "-c"]
 #OH MY ZSH INSTALLATION
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 RUN echo "alias lvim=$HOME/.local/bin/lvim" >> $HOME/.zshrc
+RUN sed -i -e 's/ZSH_THEME="robbyrussell"/ZSH_THEME="half-life"/g' ~/.zshrc
 
 ENTRYPOINT ["/bin/zsh"]
