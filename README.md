@@ -1,3 +1,7 @@
+![Docker Hub](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
+
+![Docker Image Version (latest semver)](https://img.shields.io/docker/v/israiloff/lvim)
+
 # LunarVim Java IDE Docker Container Project Documentation
 
 ## Overview
