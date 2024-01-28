@@ -30,15 +30,10 @@ RUN apk add --no-cache --no-interactive gcompat
 RUN apk add --no-cache --no-interactive neovim
 RUN apk add --no-cache --no-interactive fontconfig
 
-
-
-#RUN apk add --no-cache --no-interactive rust
-#Rustup installation added. Installs latests stable.
+#INSTALLING RUSTUP
 RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
 ENV PATH="/root/.cargo/bin:${PATH}"
-#RUN apk add --no-cache --no-interactive cargo ----- Rustup will download cargo itself.
 RUN cargo install ripgrep fd-find
-
 
 #INSTALLING LUNARVIM
 RUN bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh) -y
