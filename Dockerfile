@@ -77,6 +77,6 @@ RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh
 RUN echo "alias lvim=$HOME/.local/bin/lvim" >> $HOME/.zshrc
 RUN sed -i -e 's/ZSH_THEME="robbyrussell"/ZSH_THEME="half-life"/g' ~/.zshrc
 RUN apk add --no-cache --no-interactive zsh-vcs
-RUN echo 'export SHELL=/bin/zsh' | sudo tee -a /etc/profile
+RUN echo "export SHELL=/bin/zsh" >> $HOME/.zshrc
 
 ENTRYPOINT ["/bin/zsh"]
