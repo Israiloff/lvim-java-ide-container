@@ -3,6 +3,10 @@ ARG PYTHON_VERSION
 FROM python:${PYTHON_VERSION}-alpine
 
 ARG JDK_VERSION
+ARG TIMEZONE
+
+RUN apk add --no-cache tzdata
+ENV TZ=${TIMEZONE}
 
 #PREPARING OS
 RUN apk add --no-cache bash
