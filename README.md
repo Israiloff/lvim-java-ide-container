@@ -5,7 +5,8 @@
 # LunarVim Java IDE Docker Container Project Documentation
 
 ## Overview
-This Dockerfile configures a container for Java development using LunarVim on an Alpine Linux base. It's tailored for a Python 3 environment, enhanced with Java Development Kit (JDK) and other essential development tools.
+This Dockerfile configures a container for [Java development using LunarVim](https://github.com/Israiloff/lvim-java-ide) 
+on an Alpine Linux base. It's tailored for a Python 3 environment, enhanced with Java Development Kit (JDK) and other essential development tools.
 
 ## Dockerfile Description
 
