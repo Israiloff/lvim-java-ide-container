@@ -86,4 +86,7 @@ RUN echo "export SHELL=/bin/zsh" >> $HOME/.zshrc
 #INSTALLING CLIPBOARD (cb)
 RUN apk add --no-cache clipboard
 
+#GIT CONFIGS
+RUN git config --global alias.pushall '!f() { for remote in $(git remote); do git push "$remote" "$@"; done; }; f'
+
 ENTRYPOINT ["/bin/zsh"]
