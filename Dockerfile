@@ -83,4 +83,7 @@ RUN sed -i -e 's/ZSH_THEME="robbyrussell"/ZSH_THEME="half-life"/g' ~/.zshrc
 RUN apk add --no-cache --no-interactive zsh-vcs
 RUN echo "export SHELL=/bin/zsh" >> $HOME/.zshrc
 
+#INSTALLING CLIPBOARD (cb)
+RUN apk add --no-cache clipboard
+
 ENTRYPOINT ["/bin/zsh"]
