@@ -20,6 +20,7 @@ on an Alpine Linux base. It's tailored for a Python 3 environment, enhanced with
 ### Dependencies Installation
 - Installs utilities (zip, unzip, curl, git), OpenJDK, Maven, Make, G++, npm, and others.
 - Installs `neovim` for LunarVim and `fontconfig` for fonts.
+- Installs `links` web browser.
 
 ### Rust Configuration
 - Installs and configures Rust, adding tools like `ripgrep` and `fd-find`.
