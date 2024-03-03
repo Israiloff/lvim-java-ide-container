@@ -89,4 +89,7 @@ RUN apk add --no-cache clipboard
 #GIT CONFIGS
 RUN git config --global alias.pushall '!f() { for remote in $(git remote); do git push "$remote" "$@"; done; }; f'
 
+#INSTALLING WEB BROWSER
+RUN apk add --no-cache links
+
 ENTRYPOINT ["/bin/zsh"]
