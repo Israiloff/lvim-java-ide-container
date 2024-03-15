@@ -62,6 +62,10 @@ RUN cd $HOME/projects/nvim/java-test && npm install && npm run build-plugin
 #DOWNLOADING LOMBOK ANNOTATION PROCESSOR
 RUN curl -L https://projectlombok.org/downloads/lombok.jar -o $HOME/projects/nvim/lombok.jar
 
+#INSTALLING LEMMINX FOR XML SUPPORT
+RUN git clone https://github.com/eclipse/lemminx.git $HOME/projects/nvim/lemminx
+RUN cd $HOME/projects/nvim/lemminx && ./mvnw clean verify -DskipTests=true
+
 RUN curl -OL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/RobotoMono.zip
 RUN mkdir /.fonts
 RUN unzip RobotoMono.zip -d /.fonts
