@@ -96,4 +96,6 @@ RUN git config --global alias.pushall '!f() { for remote in $(git remote); do gi
 #INSTALLING WEB BROWSER
 RUN apk add --no-cache links
 
+EXPOSE 33235
+
 ENTRYPOINT ["/bin/zsh"]
