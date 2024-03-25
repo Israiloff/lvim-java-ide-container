@@ -4,5 +4,4 @@ docker build \
             --build-arg PYTHON_VERSION=3 \
             --build-arg TIMEZONE=Asia/Tashkent \
             -t israiloff/lvim:$BUILD_VERSION .
-docker run -it -d --name lvim israiloff/lvim:$BUILD_VERSION
 docker tag israiloff/lvim:$BUILD_VERSION israiloff/lvim:latest
