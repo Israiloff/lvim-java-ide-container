@@ -42,3 +42,30 @@ on an Alpine Linux base. It's tailored for a Python 3 environment, enhanced with
 
 ## Additional Information
 - Ensure appropriate Python and JDK versions before building.
+
+## Pre-built Container
+
+The container is available on [Docker Hub](https://hub.docker.com/r/israiloff/lvim).
+
+### Usage
+
+- Pull the image
+```bash
+docker pull israiloff/lvim:latest
+```
+
+- Create a container
+```bash
+docker run -it --name lvim israiloff/lvim:latest
+```
+
+- Start the container
+```bash
+docker start lvim
+```
+
+- Connect to the container
+```bash
+docker exec -it lvim /bin/zsh
+```
+
