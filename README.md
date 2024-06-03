@@ -56,8 +56,14 @@ docker pull israiloff/lvim:latest
 
 - Create a container
 ```bash
-docker run -it --name lvim israiloff/lvim:latest
+docker run -it -d -p 33235:33235 -p 8090-8099:8090-8099 -v /var/run/docker.sock:/var/run/docker.sock --name lvim israiloff/lvim:latest
 ```
+
+> Note: The `-v /var/run/docker.sock:/var/run/docker.sock` option is required for Docker-in-Docker (DinD) functionality.
+
+> Note: The `-p 33235:33235` option is required for exposing the `markdown-preview` port.
+
+> Note: The `-p 8090-8099:8090-8099` option is optional for exposing your Java server ports.
 
 - Start the container
 ```bash
