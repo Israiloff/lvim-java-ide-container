@@ -99,4 +99,8 @@ RUN apk add --no-cache links
 #INSTALLING DOCKER
 RUN apk add --no-cache docker
 
+#REPAIRING MARKDOWN PREVIEW
+RUN apk add --no-cache --no-interactive yarn
+RUN cd $HOME/.local/share/lunarvim/site/pack/lazy/opt/markdown-preview.nvim && yarn install
+
 ENTRYPOINT ["/bin/zsh"]
